@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'
+    }
+
+    stages {
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean package -f eclipse-workspace\\largest\\pom.xml'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                bat 'java -cp eclipse-workspace\\largest\\target\\classes com.example.largest.App'
+            }
+        }
+    }
+}
